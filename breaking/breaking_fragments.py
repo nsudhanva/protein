@@ -10,15 +10,15 @@ DOWNLOAD_PATH = '../download_pdb/'
 # id_list = open("id_list.txt", "r") 
 # list_of_ids = ast.literal_eval(id_list.read())
 
-list_of_ids = ['104L', '103M', '102L', '4ZPY', '4MBS', '3K3J', '2GFS', '2DML', '1HQ3']
-df_dicts = []
-df_chains = []
+list_of_ids = ['104L', '103M', '102L', '4ZPY', '4MBS', '3K3J', '2GFS', '1HQ3']
+
+df_all = []
 
 for file_name in list_of_ids:
     file_type = '.pdb'
     print(file_name)
     
-    for fragment_start in range(3, 43):
+    for fragment_start in range(3, 42):
         parser = PDBParser()
         
         try:
@@ -71,9 +71,8 @@ for file_name in list_of_ids:
             df['Name'] = file_name + '_' + chain.id
             df['Start'] = start_list
             df['End'] = end_list
-            df_chains.append(df)
+            df_all.append(df)
 
-    df_dicts.append(df_chains)
     
     
         
