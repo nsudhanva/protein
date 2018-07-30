@@ -12,19 +12,18 @@ DOWNLOAD_PATH = '../download_pdb/'
 
 list_of_ids = ['104L', '103M', '102L', '4ZPY', '4MBS', '3K3J', '2GFS', '2DML', '1HQ3']
 df_dicts = []
+df_chains = []
 
-
-for fragment_start in range(3, 42):
-    print(fragment_start)
-    df_chains = []
-
-    for file_name in list_of_ids:
-        file_type = '.pdb'
-        
+for file_name in list_of_ids:
+    file_type = '.pdb'
+    print(file_name)
+    
+    for fragment_start in range(3, 43):
         parser = PDBParser()
         
         try:
             structure = parser.get_structure(file_name, DOWNLOAD_PATH + file_name + file_type)
+            
         except Exception:
             continue
         
@@ -39,14 +38,13 @@ for fragment_start in range(3, 42):
         
             count = 0
             seq = ''
-            # print(chain)
+
             residues = chain.get_residues()
             
             rem_size = 0
             
             start = 0
             for residue in residues:
-                # print(residue.get_resname(), residue.get_id()[1])
                 
                 start = residue.get_id()[1]
               
@@ -60,8 +58,6 @@ for fragment_start in range(3, 42):
                     seq = seq[3:]
                 else:
                     start_list.append(residue.get_id()[1])
-                    
-                # print(seq)
                 
                 if len(seq.strip()) == (3 * fragment_start) and seq.isalpha():
                     seq_list.append(seq)
@@ -76,7 +72,7 @@ for fragment_start in range(3, 42):
             df['Start'] = start_list
             df['End'] = end_list
             df_chains.append(df)
-    
+
     df_dicts.append(df_chains)
     
     
