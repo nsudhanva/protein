@@ -1,0 +1,4 @@
+1. Download
+2. Breaking in 3 to 41 per protein - If there are multiple chains, break them into multiple 
+3. For every 3 to 41 for every protein, compare, superimpose and calculate rmsd (min rmsd)
+4. Plots
