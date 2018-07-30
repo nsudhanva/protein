@@ -1,9 +1,13 @@
 import numpy as np 
 import pandas as pd 
+import ast
 import Bio.PDB
 from Bio.PDB import *
 
 DONWLOAD_PATH = '../download_pdb/'
+
+id_list = open("id_list.txt", "r") 
+list_of_ids = ast.literal_eval(id_list.read())
 
 file_name = '1hq3'
 file_type = '.pdb'
